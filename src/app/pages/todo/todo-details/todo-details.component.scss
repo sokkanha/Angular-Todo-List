@@ -1,0 +1,19 @@
+mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    button{
+        border-radius: 5px;
+        text-transform: uppercase;
+    }
+    .btn-cancel {
+        color:  #6366f1;
+        border: 2px solid  #6366f1;
+        &:hover {
+            background: none;
+        }
+    }
+    .btn-apply {
+        background: #6366f1;
+        color: #ffff;
+    }
+}
