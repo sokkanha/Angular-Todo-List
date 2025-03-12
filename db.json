@@ -1,0 +1,9 @@
+{
+    "todos": [
+        {"id":1, "title": "watch movie with bf tonight at 8pm", "status": "InProgress"},
+        {"id":2, "title": "play badminton at sport club", "status": "InProgress"},
+        {"id":3, "title": "self study nest.js", "status": "Progress"},
+        {"id":4, "title": "exam final review", "status": "Progress"},
+        {"id":5, "title": "do housework for an hour", "status": "InProgress"}
+    ]
+}
