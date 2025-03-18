@@ -1,22 +1,19 @@
 {
   "todos": [
     {
-      "title": "play badminton at sport club party",
-      "id": "2"
+      "title": "do house work",
+      "completed": true,
+      "id": "3"
     },
     {
-      "id": "3",
-      "title": "self study nest.js",
-      "status": "Progress"
-    },
-    {
-      "id": "5",
       "title": "do housework for an hour",
-      "status": "InProgress"
+      "completed": true,
+      "id": "5"
     },
     {
-      "id": "27c5",
-      "title": "make it new "
+      "title": "fdsfasdfsdfaffasdfasdf",
+      "completed": true,
+      "id": "1c35"
     }
   ]
 }

@@ -10,23 +10,23 @@ import { TodoService, Todo } from '../../../services/todo.service';
   styleUrls: ['./todo-lists.component.scss'] 
 })
 export class TodoListsComponent implements OnInit {
-  private todoService = inject(TodoService);
-  private dialog = inject(MatDialog);
   public listTodo: Todo[] = []; 
+  public isCheck:boolean = false;
+  
+  constructor(
+    private todoService:TodoService,
+    private dialog:MatDialog
+  ){}
   
   ngOnInit(): void {
     this.getTodoLists(); 
   }
 
   private getTodoLists() {
-    this.todoService.list().subscribe({
-      next: (res) => {
-        this.listTodo = res;
-      },
-      error: (err) => {
-        console.error('Error fetching todos:', err);
-      }
-    });
+    this.todoService.list().subscribe(res => {
+      if(!res) return;
+      this.listTodo = res;
+    })
   }
 
   public deleteItemById(id: any) {
@@ -42,5 +42,14 @@ export class TodoListsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.getTodoLists();
     });
+  }
+
+  public toggleTaskCompletion(task: any) {
+    task.completed = !task.completed;
+    this.updatedStatus(task.id, task);
+  }
+  
+  private updatedStatus(id:number, data:any) {
+    this.todoService.update(id,data).subscribe();
   }
 }

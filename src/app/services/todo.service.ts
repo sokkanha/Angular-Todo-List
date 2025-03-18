@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export interface Todo {
   id?: number;
   title: string;
-  status?: boolean;
+  completed?: boolean;
 }
 
 @Injectable({

@@ -10,10 +10,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './todo-details.component.scss'
 })
 export class TodoDetailsComponent implements OnInit{
-  @ViewChild('todoForm') todoForm!: NgForm; 
   public todoId:any;
   public todoData = {
-    title: ''
+    title: '',
+    completed: false
   };
   
   constructor(
@@ -30,7 +30,7 @@ export class TodoDetailsComponent implements OnInit{
   }
 
   public save() {
-    if(this.todoForm.invalid) {
+    if(!this.todoData) {
       return;
     }
     this.todoId ? this.update(this.todoId) : this.add();
@@ -51,8 +51,10 @@ export class TodoDetailsComponent implements OnInit{
   private getDataById(id: number) {
     this.todoService.getById(id).subscribe(res => {
       console.log('data from res', res)
-      console.log(this.todoForm.value)
-      this.todoForm.setValue({title: res?.title})
+      this.todoData = { 
+        title: res?.title || '', 
+        completed: res?.completed || false
+      };
     })
   }
 }
