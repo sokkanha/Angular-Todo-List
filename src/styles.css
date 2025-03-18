@@ -6,3 +6,24 @@
 @source "../node_modules/flowbite";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+    app-todo-details {
+        h1{
+            color: white !important;
+        }
+        section{
+            background-color: black !important;
+            border:1px solid white;
+            border-radius: 5px;
+
+        }
+    }
+
+    input[type="text"],select {
+        background-color: black !important;
+        color: white !important;
+    }
+}

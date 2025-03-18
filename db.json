@@ -7,12 +7,12 @@
     },
     {
       "title": "do housework for an hour",
-      "completed": true,
+      "completed": false,
       "id": "5"
     },
     {
       "title": "fdsfasdfsdfaffasdfasdf",
-      "completed": true,
+      "completed": false,
       "id": "1c35"
     }
   ]
