@@ -7,6 +7,7 @@ import { TodoDetailsComponent } from './todo-details/todo-details.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { provideHttpClient } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     TodoListsComponent,
@@ -17,10 +18,11 @@ import { provideHttpClient } from '@angular/common/http';
     TodoRoutingModule,
     MatDialogModule,
     MatButtonModule,
-    // HttpClientModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
-    provideHttpClient(), // ✅ Use this instead
+    provideHttpClient()
   ],
 })
 export class TodoModule { }

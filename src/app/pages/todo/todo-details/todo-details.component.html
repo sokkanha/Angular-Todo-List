@@ -1,12 +1,17 @@
 <mat-dialog-content class="mat-typography">
     <h2 mat-dialog-title [align]="'center'">New Notes</h2> 
-
-    <div class="pb-16">
-    <input type="text" placeholder="Input your notes..." class="w-md rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-2 -outline-offset-2 outline-indigo-400 placeholder:text-gray-400 focus:outline-none ">
-    </div>
+    <form class="pb-16" #todoForm="ngForm">
+      <input 
+      type="text" 
+      name="title" 
+      [(ngModel)]="todoData.title"
+      placeholder="Input your notes..." 
+      class="w-md rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-2 -outline-offset-2 outline-indigo-400 placeholder:text-gray-400 focus:outline-none "
+      >
+    </form>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-stroked-button mat-dialog-close class="btn-cancel">Cancel</button>
-  <button mat-flat-button [mat-dialog-close]="true" class="btn-apply" cdkFocusInitial>Apply</button>
+  <button mat-flat-button (click)="save()" [mat-dialog-close]="true" class="btn-apply" cdkFocusInitial>Apply</button>
 </mat-dialog-actions>

@@ -13,18 +13,12 @@ export class TodoListsComponent implements OnInit {
   private todoService = inject(TodoService);
   private dialog = inject(MatDialog);
   public listTodo: Todo[] = []; 
+  
   ngOnInit(): void {
     this.getTodoLists(); 
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(TodoDetailsComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-  getTodoLists() {
+  private getTodoLists() {
     this.todoService.list().subscribe({
       next: (res) => {
         this.listTodo = res;
@@ -32,6 +26,21 @@ export class TodoListsComponent implements OnInit {
       error: (err) => {
         console.error('Error fetching todos:', err);
       }
+    });
+  }
+
+  public deleteItemById(id: any) {
+    this.todoService.delete(id).subscribe(() => {
+      this.getTodoLists();
+    })
+  }
+
+  public openDialog(id?: number) {
+    const dialogRef = this.dialog.open(TodoDetailsComponent, {
+      data: { id: id }
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.getTodoLists();
     });
   }
 }
