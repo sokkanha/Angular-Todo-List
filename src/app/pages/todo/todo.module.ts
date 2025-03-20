@@ -8,6 +8,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 @NgModule({
   declarations: [
     TodoListsComponent,
@@ -19,10 +22,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatDatepickerModule,
     FormsModule
   ],
   providers: [
-    provideHttpClient()
+    provideHttpClient(),
+    provideNativeDateAdapter()
   ],
 })
 export class TodoModule { }

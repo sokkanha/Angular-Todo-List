@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, model, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TodoDetailsComponent } from '../todo-details/todo-details.component';
 import { TodoService, Todo } from '../../../services/todo.service';
@@ -16,6 +16,7 @@ export class TodoListsComponent implements OnInit {
   public taskName: string = '';
   public taskFilter: string = '';
   public isDark: boolean = false;
+  selected = model<Date | null>(null);
 
   constructor(
     private todoService:TodoService,

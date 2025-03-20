@@ -2,7 +2,7 @@
   "todos": [
     {
       "title": "do house work",
-      "completed": true,
+      "completed": false,
       "id": "3"
     },
     {
@@ -14,6 +14,26 @@
       "title": "fdsfasdfsdfaffasdfasdf",
       "completed": false,
       "id": "1c35"
+    },
+    {
+      "id": "7a33",
+      "title": "make it news",
+      "completed": false
+    },
+    {
+      "id": "3fc2",
+      "title": "have a date",
+      "completed": false
+    },
+    {
+      "id": "961d",
+      "title": "fix bugs",
+      "completed": false
+    },
+    {
+      "id": "4c24",
+      "title": "dfaksdf",
+      "completed": false
     }
   ]
 }
