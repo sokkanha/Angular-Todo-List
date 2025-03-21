@@ -1,7 +1,7 @@
 <section>
   <mat-dialog-content class="mat-typography">
-    <h1 mat-dialog-title [align]="'center'">NEW NOTES</h1> 
-    <form class="pb-16" #todoForm="ngForm" (ngSubmit)="save()">
+    <h1 mat-dialog-title [align]="'center'">NEW TASK</h1> 
+    <form class="pb-16" #todoForm="ngForm">
       <input 
       type="text" 
       name="title" 
@@ -14,7 +14,7 @@
 
 <mat-dialog-actions>
   <button mat-stroked-button mat-dialog-close class="btn-cancel">Cancel</button>
-  <button mat-flat-button [mat-dialog-close]="true" class="btn-apply" cdkFocusInitial type="submit">
+  <button mat-flat-button [mat-dialog-close]="true" class="btn-apply" cdkFocusInitial (click)="save()">
     Apply
   </button>
 </mat-dialog-actions>

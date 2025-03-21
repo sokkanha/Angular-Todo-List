@@ -11,14 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { NotesListComponent } from './notes/notes-list/notes-list.component';
-import { NotesDetailsComponent } from './notes/notes-details/notes-details.component';
 @NgModule({
   declarations: [
     TodoListsComponent,
-    TodoDetailsComponent,
-    NotesListComponent,
-    NotesDetailsComponent,
+    TodoDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -1,62 +1,50 @@
 {
   "todos": [
     {
-      "title": "do house work",
-      "completed": true,
-      "id": "3"
-    },
-    {
-      "title": "do housework for an hour",
-      "completed": true,
+      "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "completed": false,
       "id": "5"
     },
     {
-      "title": "fdsfasdfsdfaffasdfasdf",
+      "title": "Dol housework for an hour",
       "completed": true,
       "id": "1c35"
     },
     {
-      "id": "7a33",
-      "title": "make it news",
+      "title": "Read book for 10 pages",
+      "completed": true,
+      "id": "7a33"
+    },
+    {
+      "id": "acf9",
+      "title": "Review and coding ",
       "completed": false
     },
     {
-      "id": "3fc2",
-      "title": "have a date",
-      "completed": false
+      "id": "2d21",
+      "title": "Have dinner outside with family",
+      "completed": true
     },
     {
-      "id": "961d",
-      "title": "fix bugs",
-      "completed": false
+      "id": "3925",
+      "title": "Have a meeting with manager and team project",
+      "completed": true
     },
     {
-      "id": "4c24",
-      "title": "dfaksdf",
-      "completed": false
+      "id": "3328",
+      "title": "Finish task in MOE -website ",
+      "completed": true
     }
   ],
   "notes": [
     {
-      "id": 1,
-      "title": "Midterm-exam",
+      "title": "Midterm-examfdfa",
       "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',",
-      "date": "2025-3-20"
+      "date": "2025-3-20",
+      "id": "1"
     },
     {
-      "id": 2,
-      "title": "Midterm-exam",
-      "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',",
-      "date": "2025-3-20"
-    },
-    {
-      "id": 3,
-      "title": "Midterm-exam",
-      "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',",
-      "date": "2025-3-20"
-    },
-    {
-      "id": 4,
+      "id": "4",
       "title": "Midterm-exam",
       "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',",
       "date": "2025-3-20"
