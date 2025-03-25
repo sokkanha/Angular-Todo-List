@@ -1,9 +1,16 @@
 # TodoListApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+## Preview 
+![Screenshot 2025-03-24 160906](https://github.com/user-attachments/assets/557f43a3-a9ff-4195-939c-f333108a1d2f)
+![Screenshot 2025-03-24 160919](https://github.com/user-attachments/assets/3614852a-ec12-4d0a-a4fa-6bbd80c4b2c6)
 
 ## Development server
+Before starting the Angular development server, you need to run the JSON server to provide fake data. Execute the following command:
 
+```bash
+npx json-server -w db.json --port 8080
+```
 To start a local development server, run:
 
 ```bash
