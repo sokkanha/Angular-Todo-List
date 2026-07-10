@@ -10,12 +10,12 @@ import { TodoService, Todo } from '../../../services/todo.service';
   styleUrls: ['./todo-lists.component.scss'] 
 })
 export class TodoListsComponent implements OnInit {
-  public listTodo: Todo[] = []; 
-  public dataItems: any =[];
-  public isCheck:boolean = false;
-  public taskName: string = '';
-  public taskFilter: string = '';
-  public isDark: boolean = false;
+  listTodo: Todo[] = []; 
+  dataItems: any =[];
+  isCheck:boolean = false;
+  taskName: string = '';
+  taskFilter: string = '';
+  isDark: boolean = false;
   selected = model<Date | null>(null);
 
   constructor(
