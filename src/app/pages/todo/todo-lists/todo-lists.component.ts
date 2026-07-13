@@ -43,8 +43,10 @@ export class TodoListsComponent implements OnInit {
 
   public openDialog(id?: number) {
     const dialogRef = this.dialog.open(TodoDetailsComponent, {
-      data: { id: id }
+      data: { id: id },
+      width: '500px'
     });
+    
     dialogRef.afterClosed().subscribe(() => {
       this.getTodoLists();
     });

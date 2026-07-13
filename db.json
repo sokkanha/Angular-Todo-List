@@ -1,39 +1,11 @@
 {
   "todos": [
     {
-      "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "id": "d7bd",
+      "title": "do house work with kanha",
       "completed": false,
-      "id": "5"
-    },
-    {
-      "title": "Dol housework for an hour",
-      "completed": true,
-      "id": "1c35"
-    },
-    {
-      "title": "Read book for 10 pages",
-      "completed": true,
-      "id": "7a33"
-    },
-    {
-      "id": "acf9",
-      "title": "Review and coding ",
-      "completed": false
-    },
-    {
-      "id": "2d21",
-      "title": "Have dinner outside with family",
-      "completed": true
-    },
-    {
-      "id": "3925",
-      "title": "Have a meeting with manager and team project",
-      "completed": true
-    },
-    {
-      "id": "3328",
-      "title": "Finish task in MOE -website ",
-      "completed": true
+      "priority": "low",
+      "due": "2026-07-15"
     }
   ],
   "notes": [
