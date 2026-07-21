@@ -3,17 +3,12 @@
   <mat-dialog-content class="mat-typography !max-h-none">
 
     <div class="flex justify-between items-center gap-2 mb-1">
-      <h1 class="uppercase bg-[#F6D3D9] rounded-full text-center py-1.5 px-4 w-fit h-fit
-                 font-display font-bold text-xs tracking-wider text-[#2B2320] m-0">
+      <h1 class="uppercase bg-[#F6D3D9] rounded-full text-center py-1.5 px-4 w-fit h-fit font-display font-bold text-xs tracking-wider text-[#2B2320] m-0">
         {{ todoId ? 'Edit task' : 'New task' }}
       </h1>
 
-      <button
-        type="button"
-        (click)="close()"
-        aria-label="Close dialog"
-        class="flex items-center justify-center size-[26px] rounded-full border-2 border-[#2B2320]
-               hover:bg-[#F6D3D9] transition-colors duration-150"
+      <button type="button" (click)="close()" aria-label="Close dialog"
+        class="flex items-center justify-center size-[26px] rounded-full border-2 border-[#2B2320] hover:bg-[#F6D3D9] transition-colors duration-150"
       >
         <svg class="size-2.5" viewBox="0 0 24 24" fill="none" stroke="#2B2320" stroke-width="2.5" stroke-linecap="round">
           <line x1="18" y1="6" x2="6" y2="18"/>
@@ -26,22 +21,16 @@
       {{ todoId ? 'Update this line in your ledger.' : 'Add a new line to your ledger.' }}
     </span>
 
-    <form>
+    <form (ngSubmit)="save()">
 
       <div class="mb-5">
         <span class="block font-display font-bold text-xs tracking-wider uppercase text-[#B98C97] mb-2">
           What needs doing?
         </span>
-        <input
-          type="text"
-          name="title"
-          [(ngModel)]="todoData.title"
-          placeholder="Buy birthday candles"
-          class="w-full border-0 border-b-2 border-[#2B2320] bg-transparent
-                 font-hand text-[17px] text-[#2B2320] px-0.5 pt-1 pb-1.5
-                 placeholder:text-[#C9BAB0]
-                 focus:outline-none focus:border-[#E99AA6]
-                 transition-colors duration-150"
+        <input type="text" name="title"
+          [(ngModel)]="todoData.title" placeholder="Buy birthday candles"
+          class="w-full border-0 border-b-2 border-[#2B2320] bg-transparent font-hand text-[17px] text-[#2B2320] px-0.5 pt-1 pb-1.5
+                 placeholder:text-[#C9BAB0] focus:outline-none focus:border-[#E99AA6] transition-colors duration-150"
         />
       </div>
 
@@ -50,35 +39,11 @@
           Priority
         </span>
         <div class="flex gap-4">
-          <button type="button" (click)="selectPriority('low')" class="flex flex-col items-center gap-1">
-            <span class="flex items-center justify-center size-[34px] rounded-full border-[1.5px] transition-colors duration-150"
-                  [class.border-[#E7DDD3]]="todoData.priority !== 'low'"
-                  [class.border-[#B9CBAB]]="todoData.priority === 'low'"
-                  [class.bg-[#EAF1E4]]="todoData.priority === 'low'">
-              <span class="size-[11px] rounded-full bg-[#B9CBAB]"></span>
-            </span>
-            <span class="font-hand text-xs text-[#8A7C73]">Low</span>
-          </button>
-
-          <button type="button" (click)="selectPriority('medium')" class="flex flex-col items-center gap-1">
-            <span class="flex items-center justify-center size-[34px] rounded-full border-[1.5px] transition-colors duration-150"
-                  [class.border-[#E7DDD3]]="todoData.priority !== 'medium'"
-                  [class.border-[#E7C463]]="todoData.priority === 'medium'"
-                  [class.bg-[#FBF1D9]]="todoData.priority === 'medium'">
-              <span class="size-[11px] rounded-full bg-[#E7C463]"></span>
-            </span>
-            <span class="font-hand text-xs text-[#8A7C73]">Medium</span>
-          </button>
-
-          <button type="button" (click)="selectPriority('high')" class="flex flex-col items-center gap-1">
-            <span class="flex items-center justify-center size-[34px] rounded-full border-[1.5px] transition-colors duration-150"
-                  [class.border-[#E7DDD3]]="todoData.priority !== 'high'"
-                  [class.border-[#E99AA6]]="todoData.priority === 'high'"
-                  [class.bg-[#FBEBEE]]="todoData.priority === 'high'">
-              <span class="size-[11px] rounded-full bg-[#E99AA6]"></span>
-            </span>
-            <span class="font-hand text-xs text-[#8A7C73]">High</span>
-          </button>
+          @for (item of priorities; track $index) {
+            <ng-container
+              *ngTemplateOutlet="priorityButton; context: { $implicit: item }">
+            </ng-container>
+          }
         </div>
       </div>
 
@@ -92,12 +57,8 @@
             <rect x="3" y="5" width="18" height="16" rx="2"/>
             <path d="M3 10h18M8 3v4M16 3v4"/>
           </svg>
-          <input
-            type="date"
-            name="due"
-            [(ngModel)]="todoData.due"
-            class="flex-1 border-0 bg-transparent font-hand text-[17px] text-[#2B2320]
-                   focus:outline-none [color-scheme:light]"
+          <input type="date"  name="due" [(ngModel)]="todoData.due" 
+            class="flex-1 border-0 bg-transparent font-hand text-[17px] text-[#2B2320] focus:outline-none [color-scheme:light]"
           />
         </div>
       </div>
@@ -106,25 +67,34 @@
   </mat-dialog-content>
 
   <div class="flex justify-end gap-2.5 mt-6">
-    <button
-      type="button"
-      mat-stroked-button
-      (click)="close()"
+    <button type="button" mat-stroked-button (click)="close()"
       class="!rounded-full !border-2 !border-[#E7DDD3] !text-[#8A7C73] !font-display !font-bold !normal-case"
     >
       Cancel
     </button>
-    <button
-      type="button"
-      mat-flat-button
-      [disabled]="!canSave || loading"
-      (click)="save()"
-      cdkFocusInitial
-      class="!rounded-full !bg-[#ec909e] !text-[#FFFDF9] !font-display !font-bold !normal-case
-             disabled:!opacity-50 disabled:!cursor-not-allowed"
+    <button type="button" mat-flat-button  [disabled]="!canSave || loading" 
+      (click)="save()" cdkFocusInitial
+      class="!rounded-full !bg-[#ec8090] !text-[#FFFDF9] !font-display !font-bold !normal-case disabled:!opacity-50 disabled:!cursor-not-allowed"
     >
       {{ loading ? 'Saving…' : (todoId ? 'Save changes' : 'Add task') }}
     </button>
   </div>
 
 </section>
+
+
+<!-- Priority buttons group -->
+<ng-template #priorityButton let-priority>
+  <button type="button" (click)="selectPriority(priority.value)" class="flex flex-col items-center gap-1 cursor-pointer"
+    [ngClass]="{'hidden': isDontForgot && priority?.value !== 'low'}">
+    <span
+      class="flex items-center justify-center size-[34px] rounded-full border-[1.5px] transition-colors duration-150"
+      [style.border-color]="todoData.priority === priority.value? priority.border: '#E7DDD3'"
+      [style.background-color]=" todoData.priority === priority.value ? priority.bg : 'transparent'"
+    >
+      <span class="size-[11px] rounded-full" [style.background-color]="priority.color"></span>
+    </span>
+
+    <span class="font-hand text-xs text-[#8A7C73]"> {{ priority.label }}</span>
+  </button>
+</ng-template>

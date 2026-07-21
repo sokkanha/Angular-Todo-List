@@ -1,7 +1,7 @@
 import { Component, model, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TodoDetailsComponent } from '../todo-details/todo-details.component';
-import { TodoService, Todo } from '../../../services/todo.service';
+import { TodoData, TodoService } from '../../../services/todo.service';
 
 @Component({
   selector: 'app-todo-lists',
@@ -10,13 +10,14 @@ import { TodoService, Todo } from '../../../services/todo.service';
   styleUrls: ['./todo-lists.component.scss'] 
 })
 export class TodoListsComponent implements OnInit {
-  listTodo: Todo[] = []; 
+  listTodo!: TodoData[]; 
   dataItems: any =[];
   isCheck:boolean = false;
   taskName: string = '';
   taskFilter: string = '';
   isDark: boolean = false;
   selected = model<Date | null>(null);
+  currentDate: Date = new Date();
 
   constructor(
     private todoService:TodoService,
@@ -35,15 +36,15 @@ export class TodoListsComponent implements OnInit {
     })
   }
 
-  public deleteItemById(id: any) {
+  public deleteItemById(id: string) {
     this.todoService.delete(id).subscribe(() => {
       this.getTodoLists();
     })
   }
 
-  public openDialog(id?: number) {
+  public openDialog(id?: string, isDontForget?: boolean) {
     const dialogRef = this.dialog.open(TodoDetailsComponent, {
-      data: { id: id },
+      data: { id: id , isDontForget: isDontForget },
       width: '500px'
     });
     
@@ -57,7 +58,7 @@ export class TodoListsComponent implements OnInit {
     this.updatedStatus(task.id, task);
   }
   
-  private updatedStatus(id:number, data:any) {
+  private updatedStatus(id:string, data:any) {
     this.todoService.update(id,data).subscribe();
   }
 
@@ -84,5 +85,15 @@ export class TodoListsComponent implements OnInit {
     } else {
       document.body.classList.remove('dark-mode');  // Remove dark mode class from body
     }
+  }
+
+  get priorityTodos(): TodoData[] {
+    const high = this.listTodo.filter(t => t.priority === 'high' && !t.completed);
+    const medium = this.listTodo.filter(t => t.priority === 'medium' && !t.completed);
+    return [...high, ...medium].slice(0, 3);
+  }
+
+  get lowPriority() {
+    return this.listTodo.filter(t => t.priority === 'low' && !t.completed);
   }
 }

@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export interface Todo {
-  id?: number;
+export type Priority = 'low' | 'medium' | 'high';
+export interface TodoData {
+  id?: string;
   title: string;
-  completed?: boolean;
+  completed: boolean;
+  priority: Priority;
+  due: string | null;
 }
 
 @Injectable({
@@ -16,23 +19,23 @@ export class TodoService {
     private http: HttpClient
   ) { }
 
-  create(data: Todo) {
-    return this.http.post<Todo>(this.url, data);
+  create(data: TodoData) {
+    return this.http.post<TodoData>(this.url, data);
   }
   
   list(params?: any) {
-    return this.http.get<Todo[]>(this.url, { params });
+    return this.http.get<TodoData[]>(this.url, { params });
   }
   
-  getById(id: number, params?: any) {
-    return this.http.get<Todo>(`${this.url}${id}`, { params });
+  getById(id: string, params?: any) {
+    return this.http.get<TodoData>(`${this.url}${id}`, { params });
   }
   
-  update(id: number, data: Todo) {
-    return this.http.put<Todo>(`${this.url}${id}`, data);
+  update(id: string, data: TodoData) {
+    return this.http.put<TodoData>(`${this.url}${id}`, data);
   }
   
-  delete(id: number) {
+  delete(id: string) {
     return this.http.delete<void>(`${this.url}${id}`);
   }
   

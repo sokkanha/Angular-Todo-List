@@ -2,10 +2,17 @@
   "todos": [
     {
       "id": "d7bd",
-      "title": "do house work with kanha",
+      "title": "Deep clean house",
       "completed": false,
       "priority": "low",
       "due": "2026-07-15"
+    },
+    {
+      "id": "457e",
+      "title": "Practice angular coding",
+      "completed": false,
+      "priority": "medium",
+      "due": null
     }
   ],
   "notes": [

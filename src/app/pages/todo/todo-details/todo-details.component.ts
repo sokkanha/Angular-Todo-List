@@ -1,15 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { TodoService } from '../../../services/todo.service';
+import { Priority, TodoData, TodoService } from '../../../services/todo.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { finalize } from 'rxjs';
-
-export type Priority = 'low' | 'medium' | 'high';
-export interface TodoData {
-  title: string;
-  completed: boolean;
-  priority: Priority;
-  due: string | null;
-}
 
 @Component({
   selector: 'app-todo-details',
@@ -18,22 +10,50 @@ export interface TodoData {
   styleUrl: './todo-details.component.scss'
 })
 export class TodoDetailsComponent implements OnInit{
-  public todoId: number | null = null;
-  public loading = false;
+  todoId: string;
+  loading = false;
+  isDontForgot: boolean = false;
 
-  public todoData: TodoData = {
+  todoData: TodoData = {
     title: '',
     completed: false,
     priority: 'medium',
     due: null
   };
 
+  priorities = [
+    {
+      value: 'low',
+      label: 'Low',
+      color: '#E7C463',
+      border: '#E7C463',
+      bg: '#FBF1D9'
+    },
+    {
+      value: 'medium',
+      label: 'Medium',
+      color: '#E99AA6',
+      border: '#E99AA6',
+      bg: '#FBEBEE'
+    },
+    {
+      value: 'high',
+      label: 'High',
+      color: '#B9CBAB',
+      border: '#B9CBAB',
+      bg: '#EAF1E4'
+    }
+  ];
+
   constructor(
     private todoService: TodoService,
     private dialogRef: MatDialogRef<TodoDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: number } | null
+    @Inject(MAT_DIALOG_DATA) public data: { id: any , isDontForget?: boolean , data?: TodoData} | null
   ) {
     this.todoId = data?.id ?? null;
+    this.isDontForgot = data?.isDontForget ?? false;
+
+    this.isDontForgot && (this.todoData.priority = 'low');
   }
 
   ngOnInit(): void {
@@ -50,19 +70,20 @@ export class TodoDetailsComponent implements OnInit{
     this.todoData.priority = p;
   }
 
-  public save(): void {
+   save(): void {
     if (!this.canSave || this.loading) {
       return;
     }
     this.todoId ? this.update(this.todoId) : this.add();
   }
 
-  public close(): void {
+   close(): void {
     this.dialogRef.close();
   }
 
   private add(): void {
     this.loading = true;
+
     this.todoService.create(this.todoData)
       .pipe(finalize(() => this.loading = false))
       .subscribe(res => {
@@ -72,7 +93,7 @@ export class TodoDetailsComponent implements OnInit{
       });
   }
 
-  private update(id: number): void {
+  private update(id: string): void {
     this.loading = true;
 
     this.todoService.update(id, this.todoData)
@@ -84,9 +105,10 @@ export class TodoDetailsComponent implements OnInit{
       });
   }
 
-  private getDataById(id: number): void {
+  private getDataById(id: string): void {
     this.todoService.getById(id).subscribe((res) => {
       this.todoData = {
+        id: id,
         title: res?.title || '',
         completed: res?.completed || false,
         priority: (res as any)?.priority || 'medium',
